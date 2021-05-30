@@ -1000,13 +1000,13 @@ SWEP.Hook_GetShootSound = function(wep, sound)
             wep.DistantShootSound = ""
             return "ArcCW_BO1.MP5_Fire"
         end
-    else return end
+    else wep.DistantShootSound = "ArcCW_CDE.M16_Dist"
+        return
+    end
 
     if sils then
         return "ArcCW_BO1.M16_Sil"
     end
-
-    wep.DistantShootSound = "ArcCW_CDE.M16_Dist"
 end
 
 SWEP.Hook_GetCapacity = function(wep, cap)
