@@ -7,6 +7,7 @@ if GetConVar("arccw_codextras_merge"):GetBool() then
     SWEP.Category = "ArcCW - Black Ops"
 end
 
+-- This one is so yall are aware.
 SWEP.PrintName = "Ak 5"
 SWEP.Trivia_Class = "Assault Rifle"
 SWEP.Trivia_Desc = [[
