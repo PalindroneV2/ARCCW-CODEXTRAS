@@ -424,6 +424,7 @@ SWEP.Attachments = {
         PrintName = "Stock",
         Slot = {"bo1_stock", "bo1_mp5stock"},
         DefaultAttName = "No Stock",
+        Installed = "bo1_solider_stock"
     }, --9
     {
         PrintName = "Magazine",
@@ -792,6 +793,9 @@ SWEP.Hook_NameChange = function(wep, name)
         elseif fcg < 3 and fcg >= 0 then
             return "Skullsplitter"
         elseif fcg >= 3 then
+            if fcg == 5 then
+                return "Skullsplitter"
+            end
             return "Skullreaper"
         else return "Skullpiercer" end
     elseif truepatriot == 1 then
