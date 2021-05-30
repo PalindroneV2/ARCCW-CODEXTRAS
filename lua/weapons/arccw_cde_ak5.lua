@@ -3,7 +3,6 @@ SWEP.Spawnable = true -- this obviously has to be set to true
 SWEP.Category = "ArcCW - COD Extras" -- edit this if you like
 SWEP.AdminOnly = false
 
---NEW
 if GetConVar("arccw_codextras_merge"):GetBool() then
     SWEP.Category = "ArcCW - Black Ops"
 end
@@ -75,7 +74,7 @@ SWEP.NPCWeaponType = {
 }
 SWEP.NPCWeight = 100
 
-SWEP.AccuracyMOA = 1.75 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
+SWEP.AccuracyMOA = 1.5 -- accuracy in Minutes of Angle. There are 60 MOA in a degree.
 SWEP.HipDispersion = 550 -- inaccuracy added by hip firing.
 SWEP.MoveDispersion = 150
 
