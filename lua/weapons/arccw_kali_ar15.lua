@@ -441,8 +441,8 @@ SWEP.Attachments = {
     }, --12
     {
         PrintName = "Cosmetic",
-        Slot = "kali_wood",
-        DefaultAttName = "Black Polymer",
+        Slot = {"kali_wood", "cde_cosmetic", "cde_cosmetic_tan"},
+        DefaultAttName = "Black Finish",
         FreeSlot = true,
     }, -- 13
     {
@@ -477,6 +477,7 @@ SWEP.Hook_NameChange = function(wep, name)
     local sear = wep.Attachments[1].Installed
     local stocka = wep.Attachments[9].Installed
     local wood = wep.Attachments[13].Installed == "cde_cosmetic_wood"
+    local green = wep.Attachments[13].Installed == "cde_cosmetic_od"
     local sling = wep.Attachments[15].Installed == "kali_ar15_sling"
     local altirons = wep:GetBuff_Override("AltIrons")
 
@@ -487,8 +488,8 @@ SWEP.Hook_NameChange = function(wep, name)
     elseif barrel == "kali_ar15_barrel_a4" then
         length = 1
         ris = 1
-    elseif barrel == "kali_ar15_barrel_xm" then length = 2
-    elseif barrel == "kali_ar15_barrel_607" then length = 3
+    elseif barrel == "kali_ar15_barrel_607" then length = 2
+    elseif barrel == "kali_ar15_barrel_xm" then length = 3
     elseif barrel == "kali_ar15_barrel_727" then length = 4
     elseif barrel == "kali_ar15_barrel_ris" then
         length = 4
@@ -572,9 +573,27 @@ SWEP.Hook_NameChange = function(wep, name)
             elseif fcg == 2 then
                 alteration = "A2-E3"
                 wep.Trivia_Desc = "Navy modification of the M16A2 using A1 full-auto sears."
+                if green then
+                    prefix = "C"
+                    model = "7"
+                    alteration = ""
+                    wep.Trivia_Desc = "Canadian variant of the M16A2, standard for their military. Uses a full auto sear."
+                    if stock < 3 then
+                        alteration = "A2"
+                    end
+                end
             elseif fcg == 3 then
                 alteration = "A3"
                 wep.Trivia_Desc = "Navy modification of the M16A4 using A1 full-auto sears."
+                if green then
+                    prefix = "C"
+                    model = "7"
+                    alteration = "A1"
+                    wep.Trivia_Desc = "Canadian variant of the M16A3, standard for their military."
+                    if stock < 3 then
+                        alteration = "A2"
+                    end
+                end
             elseif fcg == 4 then
                 alteration = "A4"
                 wep.Trivia_Desc = "Further improvement of the M16 design leads to flat top upper receivers to accept multiple kinds of optics. Modern examples also have quad-rail handguards. The M16A4 enters service on 1997."
@@ -593,47 +612,32 @@ SWEP.Hook_NameChange = function(wep, name)
             elseif fcg == 2 then
                 alteration = "A2-E3"
                 wep.Trivia_Desc = "Navy modification of the M16A2 using A1 full-auto sears."
+                if green then
+                    prefix = "C"
+                    model = "7"
+                    alteration = ""
+                    wep.Trivia_Desc = "Canadian variant of the M16A2, standard for their military. Uses a full auto sear."
+                    if stock < 3 then
+                        alteration = "A2"
+                    end
+                end
             elseif fcg == 3 then
                 alteration = "A3"
                 wep.Trivia_Desc = "Navy modification of the M16A4 using A1 full-auto sears."
+                if green then
+                    prefix = "C"
+                    model = "7"
+                    alteration = "A1"
+                    wep.Trivia_Desc = "Canadian variant of the M16A3, standard for their military."
+                    if stock < 3 then
+                        alteration = "A2"
+                    end
+                end
             elseif fcg == 4 then
                 alteration = "A4"
                 wep.Trivia_Desc = "Further improvement of the M16 design leads to flat top upper receivers to accept multiple kinds of optics. Modern examples also have quad-rail handguards. The M16A4 enters service on 1997."
             end
         elseif k == 2 then
-            if fcg == 0 then
-                prefix = "XM"
-                model = "177"
-                alteration = "E2"
-                wep.Trivia_Desc = "M16A1 Carbine variant made for MACV-SOG. Several inches shorter than the 15 inch carbines and sporting a special flash hider slightly reduces noise. Part of the Colt Commando family."
-            elseif fcg == 1 then
-                prefix = "XM"
-                model = "4"
-                alteration = ""
-                wep.Trivia_Desc = "M16A2 Carbine variant still firing in 3 round bursts. Part of the Colt Commando family. Direct Predecessor of the M4 Carbine."
-            elseif fcg == 2 then
-                prefix = "M"
-                model = "727"
-                alteration = ""
-                wep.Trivia_Desc = "M16A2 Carbine variant firing in full auto. Part of the Colt Commando family."
-            elseif fcg == 3 then
-                prefix = "M"
-                model = "4"
-                alteration = "A1"
-                wep.Trivia_Desc = "Improvement of the M4 Carbine firing in full auto. This is the current United States Army standard rifle having mostly replaced the M16A4."
-                if sling and altirons then
-                    prefix = ""
-                    model = "Commando"
-                    alteration = ""
-                    wep.Trivia_Desc = "Anachronism in action. This is not what an XM177E2 looked like in Vietnam."
-                end
-            elseif fcg == 4 then
-                prefix = "M"
-                model = "4"
-                alteration = " Carbine"
-                wep.Trivia_Desc = "M16A2 Carbine variant derivative of the XM4 using the recent Colt M933 flat upper receiver still firing in 3 round bursts. Part of the Colt Commando family."
-            end
-        elseif k == 3 then
             if fcg == 0 then
                 prefix = "CAR"
                 model = "-15"
@@ -660,18 +664,50 @@ SWEP.Hook_NameChange = function(wep, name)
                 alteration = " Carbine"
                 wep.Trivia_Desc = "M16A2 Carbine variant derivative of the XM4 using the recent Colt M933 flat upper receiver still firing in 3 round bursts. Part of the Colt Commando family."
             end
-        elseif k == 5 then
-            prefix = "M"
-            model = "231"
-            alteration = " Patriot"
-            wep.Trivia_Desc = "Carbine variant of the M16 with no front sight, made for shooting from ports in armored behicles. This one seems to have a way shorter barrel than usual."
-            if cmag and stock == 0 then
-                brand = ""
-                prefix = "The"
-                model = " Patriot"
+        elseif k == 3 then
+            if fcg == 0 then
+                prefix = "XM"
+                model = "177"
+                alteration = "E2"
+                wep.Trivia_Desc = "M16A1 Carbine variant made for MACV-SOG. Several inches shorter than the 15 inch carbines and sporting a special flash hider slightly reduces noise. Part of the Colt Commando family."
+            elseif fcg == 1 then
+                prefix = "XM"
+                model = "4"
                 alteration = ""
-                wep.Trivia_Desc = "The Patriot is a one-of-a-kind sidearm made especially for The Boss."
-                truepatriot = 1
+                wep.Trivia_Desc = "M16A2 Carbine variant still firing in 3 round bursts. Part of the Colt Commando family. Direct Predecessor of the M4 Carbine."
+            elseif fcg == 2 then
+                prefix = "M"
+                model = "727"
+                alteration = ""
+                wep.Trivia_Desc = "M16A2 Carbine variant firing in full auto. Part of the Colt Commando family."
+                if green then
+                    prefix = "C"
+                    model = "8"
+                    alteration = ""
+                    wep.Trivia_Desc = "Canadian variant of the M4A1 Carbine, standard for their military."
+                end
+            elseif fcg == 3 then
+                prefix = "M"
+                model = "4"
+                alteration = "A1"
+                wep.Trivia_Desc = "Improvement of the M4 Carbine firing in full auto. This is the current United States Army standard rifle having mostly replaced the M16A4."
+                if sling and altirons then
+                    prefix = ""
+                    model = "Commando"
+                    alteration = ""
+                    wep.Trivia_Desc = "Anachronism in action. This is not what an XM177E2 looked like in Vietnam."
+                end
+                if green then
+                    prefix = "C"
+                    model = "8"
+                    alteration = "A1"
+                    wep.Trivia_Desc = "Canadian variant of the M16A3, standard for their military."
+                end
+            elseif fcg == 4 then
+                prefix = "M"
+                model = "4"
+                alteration = " Carbine"
+                wep.Trivia_Desc = "M16A2 Carbine variant derivative of the XM4 using the recent Colt M933 flat upper receiver still firing in 3 round bursts. Part of the Colt Commando family."
             end
         elseif k == 4 then
             if fcg == 0 then
@@ -701,6 +737,12 @@ SWEP.Hook_NameChange = function(wep, name)
                 if ris == 1 then
                     wep.Trivia_Desc = "M16A2 Carbine variant firing in full auto. Part of the Colt Commando family. This one has a modern quad rail RIS handguard, probably aftermarket or retro-fitted military surplus."
                 end
+                if green then
+                    prefix = "C"
+                    model = "8"
+                    alteration = ""
+                    wep.Trivia_Desc = "Canadian variant of the M4A1 Carbine, standard for their military."
+                end
                 if tube then
                     wep.Trivia_Desc = "The Hazardous Environment Combat Unit uses these as their standard firearm. They're equipped with an M203 grenade launcher to take on bigger threats."
                 end
@@ -709,11 +751,30 @@ SWEP.Hook_NameChange = function(wep, name)
                 model = "4"
                 alteration = "A1"
                 wep.Trivia_Desc = "Improvement of the M4 Carbine firing in full auto. This is the current United States Army standard rifle having mostly replaced the M16A4."
+                if green then
+                    prefix = "C"
+                    model = "8"
+                    alteration = "A1"
+                    wep.Trivia_Desc = "Canadian variant of the M16A3, standard for their military."
+                end
             elseif fcg == 4 then
                 prefix = "M"
                 model = "4"
                 alteration = " Carbine"
                 wep.Trivia_Desc = "M16A2 Carbine variant derivative of the XM4 using the recent Colt M933 flat upper receiver still firing in 3 round bursts. Part of the Colt Commando family."
+            end
+        elseif k == 5 then
+            prefix = "M"
+            model = "231"
+            alteration = " Patriot"
+            wep.Trivia_Desc = "Carbine variant of the M16 with no front sight, made for shooting from ports in armored behicles. This one seems to have a way shorter barrel than usual."
+            if cmag and stock == 0 then
+                brand = ""
+                prefix = "The"
+                model = " Patriot"
+                alteration = ""
+                wep.Trivia_Desc = "The Patriot is a one-of-a-kind sidearm made especially for The Boss."
+                truepatriot = 1
             end
         elseif k == 6 then
             if fcg == 0 then
@@ -752,6 +813,12 @@ SWEP.Hook_NameChange = function(wep, name)
                         This one has a modern quad rail RIS handguard and a flip up Front Sight, probably aftermarket or retro-fitted military surplus.
                     ]]
                 end
+                if green then
+                    prefix = "C"
+                    model = "8"
+                    alteration = ""
+                    wep.Trivia_Desc = "Canadian variant of the M4A1 Carbine, standard for their military."
+                end
                 if tube then
                     wep.Trivia_Desc = "The Hazardous Environment Combat Unit uses these as their standard firearm. They're equipped with an M203 grenade launcher to take on bigger threats."
                 end
@@ -760,6 +827,12 @@ SWEP.Hook_NameChange = function(wep, name)
                 model = "4"
                 alteration = "A1"
                 wep.Trivia_Desc = "Improvement of the M4 Carbine firing in full auto. This is the current United States Army standard rifle having mostly replaced the M16A4."
+                if green then
+                    prefix = "C"
+                    model = "8"
+                    alteration = "A1"
+                    wep.Trivia_Desc = "Canadian variant of the M16A3, standard for their military."
+                end
             elseif fcg == 4 then
                 prefix = "M"
                 model = "4"
@@ -982,18 +1055,22 @@ SWEP.Hook_ModifyBodygroups = function(wep, data)
 
     if sling and (altirons or optic) then vm:SetBodygroup(6,2) end
 
-    local wood = wep:GetBuff_Override("FNV_Unique")
+    local camo = 0
+    if wep.Attachments[13].Installed == "cde_cosmetic_wood" then camo = 2
+    elseif wep.Attachments[13].Installed == "cde_cosmetic_od" then camo = 4
+    elseif wep.Attachments[13].Installed == "cde_cosmetic_tan" then camo = 6
+    elseif wep.Attachments[13].Installed == "cde_cosmetic_red" then camo = 8
+    end
 
-    if !papcamo and !wood then
-        vm:SetSkin(0)
-    elseif !papcamo and wood then
-        vm:SetSkin(1)
-    elseif papcamo and !wood then
-        vm:SetSkin(2)
-    elseif papcamo and wood then
-        vm:SetSkin(3)
+    for k = camo, camo do
+        vm:SetSkin(k)
+        if papcamo then vm:SetSkin(k + 1) end
     end
 end
+
+SWEP.RejectAttachments = {
+    ["cde_cosmetic_black"] = true,
+}
 
 SWEP.Hook_GetShootSound = function(wep, sound)
     local sils = wep.Attachments[3].Installed and wep:GetBuff_Override("Silencer")
