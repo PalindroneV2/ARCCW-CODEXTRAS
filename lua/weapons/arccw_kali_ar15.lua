@@ -1076,7 +1076,7 @@ SWEP.Hook_GetShootSound = function(wep, sound)
     local sils = wep.Attachments[3].Installed and wep:GetBuff_Override("Silencer")
 
     if wep.Attachments[10].Installed == "ammo_kali_ar15_9mm" then
-        if sils then return "ArcCW_BO2.M1911_Sil"
+        if sils then return "ArcCW_BO2.Pistol_Sil"
         else
             wep.DistantShootSound = ""
             return "ArcCW_BO1.MP5_Fire"

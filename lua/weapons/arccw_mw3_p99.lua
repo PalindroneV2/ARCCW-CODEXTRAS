@@ -81,7 +81,7 @@ SWEP.ShootVol = 115 -- volume of shoot sound
 SWEP.ShootPitch = 100 -- pitch of shoot sound
 
 SWEP.ShootSound = "ArcCW_BO2.BHP_Fire"
-SWEP.ShootSoundSilenced = "ArcCW_BO2.M1911_Sil"
+SWEP.ShootSoundSilenced = "ArcCW_BO2.Pistol_Sil"
 
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 SWEP.ShellModel = "models/shells/shell_9mm.mdl"
@@ -341,8 +341,8 @@ SWEP.Animations = {
         LHIKIn = 1,
         LHIKOut = 0.25,
         SoundTable = {
-            {s = "ArcCW_BO2.M1911_MagOut", t = 0.25},
-            {s = "ArcCW_BO2.M1911_MagIn", t = 1}
+            {s = "ArcCW_BO2.Pistol_MagOut", t = 0.25},
+            {s = "ArcCW_BO2.Pistol_MagIn", t = 1}
         },
     },
     ["reload_empty"] = {
@@ -353,9 +353,9 @@ SWEP.Animations = {
         LHIKIn = 1,
         LHIKOut = 0.25,
         SoundTable = {
-            {s = "ArcCW_BO2.M1911_MagOut", t = 0.25},
-            {s = "ArcCW_BO2.M1911_MagIn", t = 1},
-            {s = "ArcCW_BO2.M1911_SlideBack", t = 1.5}
+            {s = "ArcCW_BO2.Pistol_MagOut", t = 0.25},
+            {s = "ArcCW_BO2.Pistol_MagIn", t = 1},
+            {s = "ArcCW_BO2.Pistol_SlideBack", t = 1.5}
         },
     },
     ["enter_sprint"] = {
