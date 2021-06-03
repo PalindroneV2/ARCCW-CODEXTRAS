@@ -56,7 +56,7 @@ SWEP.Recoil = 0.3
 SWEP.RecoilSide = 0.3
 SWEP.RecoilRise = 1
 
-SWEP.Delay = 60 / 937 -- 60 / RPM.
+SWEP.Delay = 60 / 1100 -- 60 / RPM.
 SWEP.Num = 1 -- number of shots per trigger pull.
 SWEP.Firemodes = {
     {
@@ -129,8 +129,8 @@ SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_PISTOL
 SWEP.ActivePos = Vector(1, 3, 0.5)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
-SWEP.CustomizePos = Vector(13, 0, -3)
-SWEP.CustomizeAng = Angle(15, 40, 10)
+SWEP.CustomizePos = Vector(12, 0, -2)
+SWEP.CustomizeAng = Angle(15, 40, 15)
 
 SWEP.SprintPos = Vector(0, 3, 0)
 SWEP.SprintAng = Angle(0, 0, 0)
